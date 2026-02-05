@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import { DB_CONFIG } from "./constants/constants.js";
 import { getAllStudents } from "./students/students.js";
 import { getAllCours } from "./cours/cours.js";
+import { getStudentById } from "./students/students.js";
+import { getCoursById } from "./cours/cours.js";
 
 dotenv.config();
 
@@ -20,6 +22,14 @@ try {
 
     const cours = await getAllCours(connection);
     console.log("Cours:", cours);
+
+    const etudiantData = await getStudentById(connection, 1);
+    console.log("Student by ID:", etudiantData);
+
+    const coursData = await getCoursById(connection, 1);
+    console.log("Cours by ID:", coursData);
+
+
 
 } catch (error) {
     console.error("Database error:", error);
