@@ -53,3 +53,24 @@ export async function createStudent(connection, student) {
         affectedRows: result.affectedRows
     };
 }
+
+export async function updateStudentEmail(connection, studentId, email) {
+    const query = `
+        UPDATE etudiant
+        SET etudiant_email = ?
+        WHERE etudiant_Id = ?
+    `;
+
+    const params = [
+        email ?? null,
+        studentId
+    ];
+
+    const result = await connection.query(query, params);
+
+    return {
+        affectedRows: result.affectedRows,
+        changedRows: result.changedRows
+    };
+}
+

@@ -43,3 +43,12 @@ export async function createCours(connection, cours) {
         affectedRows: result.affectedRows
     };
 }
+
+export async function getStudentsByCoursId(connection, coursId) {
+    const result = await connection.query(
+        "CALL liste_participants_cours(?)",
+        [coursId]
+    );
+
+    return result[0];
+}
